@@ -12,7 +12,7 @@ import {
 import Chat, { Bubble, useMessages } from "@chatui/core";
 
 
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react" 
 
 import BeginChat from "./components/BeginChat";
 import ChatOptions from "./components/ChatOptions";
@@ -51,20 +51,6 @@ export default function App() {
       text: "",
     };
   };
-
-  const {
-    recording,
-    speaking,
-    transcribing,
-    transcript,
-    pauseRecording,
-    startRecording,
-    stopRecording,
-  } = useWhisper({
-    onTranscribe,
-    removeSilence: true,
-    nonStop: false,
-  });
 
   const addSystemReply = (reply: string) => {
     appendMsg({
