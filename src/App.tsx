@@ -58,7 +58,6 @@ export default function App() {
       content: { text: reply },
       position: "left",
     });
-    speaker.speak(reply);
   };
 
   const addHumanReply = (reply: string) => {
