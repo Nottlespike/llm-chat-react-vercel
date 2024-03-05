@@ -10,8 +10,9 @@ import {
 } from "@mui/material";
 
 import Chat, { Bubble, useMessages } from "@chatui/core";
-import { useWhisper } from "@chengsokdara/use-whisper";
-import { ElevenLabsTextSpeaker, WebTextSpeaker } from "./TextSpeaker";
+
+
+import { Analytics } from "@vercel/analytics/react"
 
 import BeginChat from "./components/BeginChat";
 import ChatOptions from "./components/ChatOptions";
