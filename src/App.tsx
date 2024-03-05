@@ -69,9 +69,6 @@ export default function App() {
     });
   };
 
-  const speaker = new WebTextSpeaker();
-  const elevenSpeaker = new ElevenLabsTextSpeaker();
-
   const sendChat = async (text: string): Promise<string> => {
     let reply = "";
 
@@ -142,12 +139,6 @@ export default function App() {
               </Grid>
 
               <Grid item xs={12}>
-                <ReplyButton
-                  transcribing={transcribing}
-                  onHold={startRecording}
-                  onRelease={stopRecording}
-                  onCancel={pauseRecording}
-                />
                 <Button
                   sx={{ marginLeft: "12px" }}
                   onClick={() => {
