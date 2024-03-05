@@ -9,13 +9,13 @@ import {
   Alert,
 } from "@mui/material";
 
+import { Analytics } from "@vercel/analytics/react"
 import Chat, { Bubble, useMessages } from "@chatui/core";
 import BeginChat from "./components/BeginChat";
 import ChatOptions from "./components/ChatOptions";
 import ReplyButton from "./components/ReplyButton";
 
 import fetchReply from "./utils/fetchReply";
-import handleVoiceUpload from "./utils/handleVoiceUpload";
 
 import "@chatui/core/dist/index.css";
 
@@ -25,49 +25,12 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle the transcription of the audio blob with custom backend
-  // This is so we don't expose our API key to the client
-  const onTranscribe = async (blob: Blob) => {
-    try {
-      const transcribedText = await handleVoiceUpload(blob);
-      console.log("Got transcription:", transcribedText);
-      await handleSend("text", transcribedText);
-
-      return {
-        blob,
-        transcribedText,
-      };
-    } catch (error: any) {
-      console.error(error);
-      setError("There was an error processing your voice. Try again.");
-    }
-    return {
-      blob,
-      text: "",
-    };
-  };
-
-  const {
-    recording,
-    speaking,
-    transcribing,
-    transcript,
-    pauseRecording,
-    startRecording,
-    stopRecording,
-  } = useWhisper({
-    onTranscribe,
-    removeSilence: true,
-    nonStop: false,
-  });
-
   const addSystemReply = (reply: string) => {
     appendMsg({
       type: "text",
       content: { text: reply },
       position: "left",
     });
-    speaker.speak(reply);
   };
 
   const addHumanReply = (reply: string) => {
@@ -78,8 +41,7 @@ export default function App() {
     });
   };
 
-  const speaker = new WebTextSpeaker();
-  const elevenSpeaker = new ElevenLabsTextSpeaker();
+
 
   const sendChat = async (text: string): Promise<string> => {
     let reply = "";
