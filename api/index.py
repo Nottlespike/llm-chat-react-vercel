@@ -57,8 +57,8 @@ def format_history(self, history):
 PROMPT = build_prompt(_PROMPT_TEMPLATE)
 
 # Set to gpt-4 if you have access to it.
-model_type = os.getenv('OPENAI_API_MODEL', 'gpt-3.5-turbo')
-chat = ChatOpenAI(temperature=0, model=model_type)
+model_type = os.getenv('dolphin-2.7-mixtral-8x7b-8bpw-exl2-8')
+chat = ChatOpenAI(temperature=0.7, model=model_type)
 openai.api_key = os.environ['OPENAI_API_KEY']
 logging.info(f'Using model: {model_type}')
 
