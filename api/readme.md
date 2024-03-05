@@ -17,4 +17,5 @@ In Vercel, they can be added with the `vercel` CLI:
 
 ```bash
     vercel env add OPENAI_API_KEY
+    vercel evn add OPENAI_API_BASE
 ```
