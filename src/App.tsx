@@ -10,11 +10,8 @@ import {
 } from "@mui/material";
 
 import Chat, { Bubble, useMessages } from "@chatui/core";
-
-
-import { Analytics } from "@vercel/analytics/react"
-
 import BeginChat from "./components/BeginChat";
+import { Analytics } from "@vercel/analytics/react"
 import ChatOptions from "./components/ChatOptions";
 import ReplyButton from "./components/ReplyButton";
 
@@ -25,7 +22,6 @@ import "@chatui/core/dist/index.css";
 
 export default function App() {
   const { messages, appendMsg, setTyping } = useMessages([]);
-  const [speakResponse, setSpeakResponse] = useState(true);
   const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
