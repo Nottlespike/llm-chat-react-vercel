@@ -12,7 +12,7 @@ import {
 import Chat, { Bubble, useMessages } from "@chatui/core";
 
 
-import { Analytics } from "@vercel/analytics/react" 
+import { Analytics } from "@vercel/analytics/react"
 
 import BeginChat from "./components/BeginChat";
 import ChatOptions from "./components/ChatOptions";
@@ -52,12 +52,27 @@ export default function App() {
     };
   };
 
+  const {
+    recording,
+    speaking,
+    transcribing,
+    transcript,
+    pauseRecording,
+    startRecording,
+    stopRecording,
+  } = useWhisper({
+    onTranscribe,
+    removeSilence: true,
+    nonStop: false,
+  });
+
   const addSystemReply = (reply: string) => {
     appendMsg({
       type: "text",
       content: { text: reply },
       position: "left",
     });
+    speaker.speak(reply);
   };
 
   const addHumanReply = (reply: string) => {
@@ -67,6 +82,9 @@ export default function App() {
       position: "right",
     });
   };
+
+  const speaker = new WebTextSpeaker();
+  const elevenSpeaker = new ElevenLabsTextSpeaker();
 
   const sendChat = async (text: string): Promise<string> => {
     let reply = "";
@@ -146,13 +164,6 @@ export default function App() {
                 >
                   End Chat
                 </Button>
-              </Grid>
-
-              <Grid item xs={12}>
-                <ChatOptions
-                  speakResponse={speakResponse}
-                  onSpeakResponseChecked={setSpeakResponse}
-                />
               </Grid>
             </>
           )}
