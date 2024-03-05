@@ -9,9 +9,9 @@ import {
   Alert,
 } from "@mui/material";
 
+import { Analytics } from "@vercel/analytics/react"
 import Chat, { Bubble, useMessages } from "@chatui/core";
 import BeginChat from "./components/BeginChat";
-import { Analytics } from "@vercel/analytics/react"
 import ChatOptions from "./components/ChatOptions";
 import ReplyButton from "./components/ReplyButton";
 
